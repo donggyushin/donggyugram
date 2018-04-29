@@ -19,6 +19,10 @@ urlpatterns = [
         r"^users/",
         include("Donggyugram.users.urls", namespace="users"),
     ),
+    url(
+        r"^images/",
+        include("Donggyugram.images.urls", namespace="images"),
+    ),
     url(r"^accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
