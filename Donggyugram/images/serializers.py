@@ -8,6 +8,7 @@ class FeedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = user_models.User
         fields = (
+            'id',
             'username',
             'profile_image'
         )
