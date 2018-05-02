@@ -58,7 +58,7 @@ class ImageSerializer(serializers.ModelSerializer):
         )
 
 
-class UserProfileImageSerializer(serializers.ModelSerializer):
+class CountImageSerializer(serializers.ModelSerializer):
     
     class Meta:
         

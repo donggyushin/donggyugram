@@ -6,6 +6,7 @@ from rest_framework import status
 
 
 
+
 # Create your views here.
 
 class Feed(APIView):
@@ -138,9 +139,18 @@ class Comment(APIView):
 class Search(APIView):
 
     def get(self, request, format=None):
+        
+        hashtags = request.query_params.get('hashtags', None)
 
-        hashtags = request.query_params.get('hashtags')
+        if hashtags is not None:
+            
 
-        print(hashtags)
+            hashtags = hashtags.split(",")
+            
+            images = models.Image.objects.filter(tags__name__in = hashtags).distinct()
 
-        return Response(status=status.HTTP_200_OK)
+            serializer = serializers.CountImageSerializer(images, many=True)
+
+            return Response(data=serializer.data ,status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
