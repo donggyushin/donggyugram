@@ -7,6 +7,7 @@ class ExploreUserSerializer(serializers.ModelSerializer):
 
         model = models.User
         fields = (
+            'id',
             'name',
             'username',
             'profile_image',
