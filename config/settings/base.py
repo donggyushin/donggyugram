@@ -74,6 +74,7 @@ LOCAL_APPS = [
     'Donggyugram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'Donggyugram.images.apps.ImagesConfig',
+    'Donggyugram.notifications.apps.NotificationsConfig'
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
