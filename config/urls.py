@@ -23,6 +23,10 @@ urlpatterns = [
         r"^images/",
         include("Donggyugram.images.urls", namespace="images"),
     ),
+    url(
+        r'^notifications/',
+        include('Donggyugram.notifications.urls', namespace='notifications')
+    ),
     url(r"^accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(

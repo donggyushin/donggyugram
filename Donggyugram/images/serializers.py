@@ -2,6 +2,14 @@ from rest_framework import serializers
 from . import models
 from Donggyugram.users import models as user_models
 
+class SmallImageSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+        )
+
 
 class FeedUserSerializer(serializers.ModelSerializer):
 
