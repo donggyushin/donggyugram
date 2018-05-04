@@ -23,4 +23,12 @@ class Notification(images_models.TimeStampedModel):
     notification_type = models.CharField(max_length = 20, choices=TYPE_CHOICES)
     comment = models.TextField(null=True, blank=True)
 
+    class Meta:
+        
+        ordering = ['-created_at']
+
+    def __str__(self):
+        
+        return 'from: {}, to: {}'.format(self.creator, self.to)
+
 

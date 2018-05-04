@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models, serializers
 from rest_framework import status
+from Donggyugram.notifications import views as notification_views
 
 
 
@@ -21,7 +22,7 @@ class Feed(APIView):
 
         for following_user in following_users:
             
-            user_images =  following_user.images.all()[:2]
+            user_images =  following_user.images.all()[:5]
 
             for image in user_images:
                 
@@ -47,8 +48,6 @@ class LikeImage(APIView):
         user = request.user
 
 
-        #create notification for like
-
         try:
           found_image = models.Image.objects.get(id = image_id)
         except models.Image.DoesNotExist:
@@ -68,6 +67,10 @@ class LikeImage(APIView):
             )
 
             new_like.save()
+
+            #create notification for like
+
+            notification_views.createNotification(user, found_image.creator, 'like', found_image)
 
             return Response(status = status.HTTP_201_CREATED)
 
@@ -105,7 +108,7 @@ class commentOnImage(APIView):
         
         user = request.user 
 
-        #create notification for comment on image
+        
 
         serializer = serializers.CommentSerializer(data=request.data)
 
@@ -118,6 +121,11 @@ class commentOnImage(APIView):
         if serializer.is_valid():
             
             serializer.save(creator=user, image=found_image)
+
+            #create notification for comment on image
+
+            notification_views.createNotification(user, found_image.creator, 'comment', found_image, serializer.data['message'])
+
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
             

@@ -13,3 +13,4 @@ class NotificationSerializer(serializers.ModelSerializer):
 
         model = models.Notification
         fields = '__all__'
+        

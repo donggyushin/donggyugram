@@ -3,13 +3,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models, serializers
 from rest_framework import status
+from Donggyugram.notifications import views as notification_views
 
 
 class ExploreUsers(APIView):
 
     def get(self, request, format=None):
 
-        last_five = models.User.objects.all().order_by('-date_joined')[:5]
+        last_five = models.User.objects.all().order_by('-date_joined')[:10]
 
         serializer = serializers.ListUserSerializer(last_five, many=True)
 
@@ -22,7 +23,6 @@ class FollowUser(APIView):
 
         user = request.user
 
-        #create notifications for follow user
 
         try:
             user_to_follow = models.User.objects.get(id = user_id)
@@ -32,6 +32,12 @@ class FollowUser(APIView):
         user.following.add(user_to_follow)
 
         user.save()
+
+        #create notifications for follow user
+
+        notification_views.createNotification(user, user_to_follow, 'follow')
+
+
 
         return Response(status=status.HTTP_200_OK)
 
