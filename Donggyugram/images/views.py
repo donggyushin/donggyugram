@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from . import models, serializers
 from rest_framework import status
 from Donggyugram.notifications import views as notification_views
-
+from Donggyugram.users import models as users_models, serializers as users_serializers
 
 
 
@@ -48,6 +48,26 @@ def get_key(image):
 
 
 class LikeImage(APIView):
+    
+
+    def get(self, request, image_id, format=None):
+        
+        user = request.user 
+
+        likes = models.Like.objects.filter(image__id=image_id)
+
+        likes_creators_ids = likes.values('creator_id')
+
+        users = users_models.User.objects.filter(id__in=likes_creators_ids)
+
+        serializer = users_serializers.ListUserSerializer(users, many = True)
+
+        return Response(data = serializer.data, status=status.HTTP_200_OK)
+
+
+
+
+
 
     def post(self, request,image_id ,format = None):
         
