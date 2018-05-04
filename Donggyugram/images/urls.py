@@ -7,6 +7,12 @@ app_name = "images"
 urlpatterns = [
     url(regex=r"^$", view=views.Feed.as_view(), name="feed"),
     url(
+        regex=r"^(?P<image_id>[0-9]+)/$",
+        view=views.ImageDetail.as_view(),
+        name="image_detail"
+
+    ),
+    url(
         regex=r"^(?P<image_id>[0-9]+)/like/$",
         view= views.LikeImage.as_view(),
         name="like_image",
