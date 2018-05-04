@@ -28,6 +28,12 @@ class Feed(APIView):
                 
                 image_list.append(image)
 
+        my_images = models.Image.objects.all()[:5]
+
+        for image in my_images:
+            
+            image_list.append(image)
+
         sorted_list = sorted(image_list, key = get_key, reverse=True)
 
         print(sorted_list)
