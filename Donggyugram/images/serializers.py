@@ -1,9 +1,12 @@
 from rest_framework import serializers
 from . import models
 from Donggyugram.users import models as user_models
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
+
 
 class SmallImageSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = models.Image
         fields = (
@@ -38,18 +41,16 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class LikeSerializer(serializers.ModelSerializer):
 
-
     class Meta:
         model = models.Like
         fields = '__all__'
 
 
+class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
 
-
-class ImageSerializer(serializers.ModelSerializer):
-    
-    comments = CommentSerializer(many = True)
+    comments = CommentSerializer(many=True)
     creator = FeedUserSerializer()
+    tags = TagListSerializerField()
 
     class Meta:
         model = models.Image
@@ -62,14 +63,15 @@ class ImageSerializer(serializers.ModelSerializer):
             "caption",
             'like_count',
             'comments',
+            'tags',
             "creator",
         )
 
 
 class CountImageSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
-        
+
         model = models.Image
         fields = (
             'id',
@@ -78,10 +80,11 @@ class CountImageSerializer(serializers.ModelSerializer):
             'like_count'
         )
 
+
 class InputImageSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
-        
+
         model = models.Image
         fields = (
             'file',
