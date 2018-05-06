@@ -1,4 +1,5 @@
 {
-    "python.pythonPath": "/Users/jwajunhyeob/.local/share/virtualenvs/Donggyugram-okGN1X74/bin/python",
-    "python.autoComplete.addBrackets": true
+  "python.pythonPath": "/Users/jwajunhyeob/.local/share/virtualenvs/Donggyugram-okGN1X74/bin/python",
+  "python.autoComplete.addBrackets": true,
+  "editor.formatOnSave": true
 }
