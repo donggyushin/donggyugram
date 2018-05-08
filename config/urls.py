@@ -12,7 +12,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
     # User management
-    url(r'^api-token-auth/', obtain_jwt_token),
+
     url(
         r"^users/",
         include("Donggyugram.users.urls", namespace="users"),
@@ -26,6 +26,8 @@ urlpatterns = [
         include('Donggyugram.notifications.urls', namespace='notifications')
     ),
     url(r"^accounts/", include("allauth.urls")),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
     # Your stuff: custom urls includes go here
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
