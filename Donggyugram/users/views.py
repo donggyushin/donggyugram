@@ -5,6 +5,13 @@ from . import models, serializers
 from rest_framework import status
 from Donggyugram.notifications import views as notification_views
 
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+
 
 class ExploreUsers(APIView):
 
@@ -69,6 +76,8 @@ class UserProfile(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, username, format=None):
+
+        print("im here!")
 
         user = request.user
 
