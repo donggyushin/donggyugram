@@ -178,7 +178,8 @@ module.exports = {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
-                        modules: true
+                        modules: true,
+                        camelCase: "dashes"
                       }
                     },
                     {

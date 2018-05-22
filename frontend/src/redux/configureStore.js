@@ -1,4 +1,4 @@
-import users from "./moduels/users";
+import user from "./moduels/user";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { routerMiddleware, routerReducer } from "react-router-redux";
@@ -9,7 +9,7 @@ import { i18nState } from "redux-i18n";
 const history = createHistory();
 
 const reducer = combineReducers({
-  users,
+  user,
   routing: routerReducer,
   i18nState
 });
