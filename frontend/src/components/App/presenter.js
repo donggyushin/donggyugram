@@ -3,7 +3,7 @@ import Footer from "components/Footer";
 import "./styles.scss";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-import Auth from "../Auth/presenter";
+import Auth from "components/Auth";
 
 const App = props => [
   //nav,
