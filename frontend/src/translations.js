@@ -4,6 +4,7 @@ export const translations = {
     "Hello {n}!": "Hola {n}!"
   },
   kr: {
-    Login: "로그인"
+    "Log in": "로그인",
+    "About Us": "우리에 대해서"
   }
 };
