@@ -5,16 +5,22 @@ import formStyles from "../shared/formStyles.scss";
 
 const LoginForm = (props, context) => (
   <div className={formStyles.formComponent}>
-    <form className={formStyles.form}>
+    <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
         type="text"
         placeholder="Username"
         className={formStyles.textInput}
+        name="username"
+        value={props.usernameValue}
+        onChange={props.handleInputChange}
       />
       <input
         type="password"
         placeholder="Password"
         className={formStyles.textInput}
+        name="password"
+        value={props.passwordValue}
+        onChange={props.handleInputChange}
       />
       <input type="submit" value="Log in" className={formStyles.button} />
     </form>
@@ -29,6 +35,13 @@ const LoginForm = (props, context) => (
     </span>
   </div>
 );
+
+LoginForm.propTypes = {
+  usernameValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
+};
 
 LoginForm.contextTypes = {
   t: PropTypes.func.isRequired
