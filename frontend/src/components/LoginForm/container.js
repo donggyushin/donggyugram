@@ -15,6 +15,7 @@ class Container extends Component {
         passwordValue={password}
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
+        responseFacebook={this._responseFacebook}
       />
     );
   }
@@ -33,6 +34,10 @@ class Container extends Component {
 
   _handleSubmit = event => {
     event.preventDefault();
+  };
+
+  _responseFacebook = response => {
+    console.log(response);
   };
 }
 

@@ -6067,6 +6067,10 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-facebook-login@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.0.1.tgz#7d43672ee86e3f2cd9e8758de1e61eb66a212611"
+
 react-i18nify@^1.11.8:
   version "1.11.14"
   resolved "https://registry.yarnpkg.com/react-i18nify/-/react-i18nify-1.11.14.tgz#e88acdba4766815b91edcecd222aa1242f422ff3"
