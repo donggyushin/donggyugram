@@ -8,10 +8,10 @@ const SignupForm = (props, context) => (
   <div className={formStyles.formComponent}>
     <h3>{context.t("Sign up to see photos and videos from your friends.")}</h3>
     <FacebookLogin
-      appId="1088597931155576"
-      autoLoad={true}
+      appId="183543915797617"
+      autoLoad={false}
       fields="name,email,picture"
-      callback={props.responseFacebook}
+      callback={props.handleFacebookLogin}
       cssClass={formStyles.button}
       icon="fa-facebook-square"
     />
@@ -69,7 +69,7 @@ SignupForm.propTypes = {
   emailValue: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  responseFacebook: PropTypes.func.isRequired
+  handleFacebookLogin: PropTypes.func.isRequired
 };
 
 SignupForm.contextTypes = {
