@@ -16,13 +16,15 @@ function saveToken(token) {
 //API actions
 
 function facebookLogin(access_token) {
-  return dispatch => {
+  return function(dispatch) {
     fetch("/users/login/facebook/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ access_token })
+      body: JSON.stringify({
+        access_token
+      })
     })
       .then(response => response.json())
       .then(json => {
@@ -31,7 +33,7 @@ function facebookLogin(access_token) {
           dispatch(saveToken(json.token));
         }
       })
-      .then(err => console.log(err));
+      .catch(err => console.log(err));
   };
 }
 
