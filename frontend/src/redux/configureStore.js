@@ -5,11 +5,13 @@ import { routerMiddleware, routerReducer } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { i18nState } from "redux-i18n";
+import photos from "./moduels/photos";
 
 const history = createHistory();
 
 const reducer = combineReducers({
   user,
+  photos,
   routing: routerReducer,
   i18nState
 });
