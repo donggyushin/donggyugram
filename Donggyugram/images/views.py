@@ -21,13 +21,13 @@ class Images(APIView):
 
         for following_user in following_users:
 
-            user_images = following_user.images.all()[:5]
+            user_images = following_user.images.all()[:2]
 
             for image in user_images:
 
                 image_list.append(image)
 
-        my_images = models.Image.objects.all()[:5]
+        my_images = models.Image.objects.all()[:2]
 
         for image in my_images:
 

@@ -56,7 +56,7 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
         model = models.Image
         fields = (
             "id",
-            "created_at",
+            "natural_time",
             "updated_at",
             "file",
             "location",
