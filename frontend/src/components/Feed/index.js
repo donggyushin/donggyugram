@@ -12,7 +12,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getFeed: () => dispatch(photoActions.getFeed())
+  getFeed: () => {
+    dispatch(photoActions.getFeed());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);

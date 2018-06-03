@@ -39,7 +39,7 @@ class Images(APIView):
 
         print(sorted_list)
 
-        serializer = serializers.ImageSerializer(sorted_list, many=True)
+        serializer = serializers.ImageSerializer(sorted_list, many=True, context={'request': request})
 
         return Response(serializer.data)
 
@@ -216,6 +216,14 @@ class ModerateComment(APIView):
 
 class ImageDetail(APIView):
 
+    def find_own_image(self, image_id, user):
+
+        try:
+            image = models.Image.objects.get(id=image_id, creator=user)
+            return image
+        except models.Image.DoesNotExist:
+            return None
+
     def get(self, request, image_id, format=None):
 
         user = request.user
@@ -224,7 +232,7 @@ class ImageDetail(APIView):
 
         serializer = serializers.ImageSerializer(image)
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(data=serializer.data, status=status.HTTP_200_OK, context={'request': request})
 
     def put(self, request, image_id, format=None):
 

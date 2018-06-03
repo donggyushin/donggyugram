@@ -39,9 +39,7 @@ function getFeed() {
 }
 
 //initial state
-const initialState = {
-  feed: []
-};
+const initialState = {};
 
 //reducer
 
