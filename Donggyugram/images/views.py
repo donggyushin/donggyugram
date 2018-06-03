@@ -16,6 +16,8 @@ class Images(APIView):
         user = request.user
 
         following_users = user.following.all()
+        print("123123123123123")
+        print(following_users)
 
         image_list = []
 
@@ -27,7 +29,7 @@ class Images(APIView):
 
                 image_list.append(image)
 
-        my_images = models.Image.objects.all()[:2]
+        my_images = user.images.all()[:2]
 
         for image in my_images:
 

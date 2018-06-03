@@ -14,7 +14,7 @@ class Container extends Component {
 
   componentDidMount() {
     const { getFeed } = this.props;
-    if (!this.props.feed) {
+    if (this.props.feed.length === 0) {
       getFeed();
     } else {
       this.setState({

@@ -19,7 +19,8 @@ const PhotoComments = props => (
 
 const Comment = props => (
   <li>
-    <span>{props.username}</span> <span>{props.comment}</span>
+    <span className={styles.username}>{props.username}</span>{" "}
+    <span>{props.comment}</span>
   </li>
 );
 
