@@ -4,22 +4,24 @@ import styles from "./styles.scss";
 import PhotoActions from "components/PhotoActions";
 import PhotoComments from "components/PhotoComments";
 import TimeStamp from "components/TimeStamp";
+import CommentBox from "components/CommentBox";
 
 const FeedPhoto = (props, context) => {
   return (
     <div className={styles.feedPhoto}>
-      <header>
+      <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpeg")}
           alt={props.creator.username}
+          className={styles.image}
         />
-        <div>
-          <span>{props.creator.username}</span>
-          <span>{props.location}</span>
+        <div className={styles.headerColumn}>
+          <span className={styles.creator}>{props.creator.username}</span>
+          <span className={styles.location}>{props.location}</span>
         </div>
       </header>
       <img src={props.file} alt={props.caption} />
-      <div>
+      <div className={styles.meta}>
         <PhotoActions number={props.like_count} />
         <PhotoComments
           creator={props.creator.username}
@@ -27,6 +29,7 @@ const FeedPhoto = (props, context) => {
           caption={props.caption}
         />
         <TimeStamp time={props.natural_time} />
+        <CommentBox />
       </div>
     </div>
   );
