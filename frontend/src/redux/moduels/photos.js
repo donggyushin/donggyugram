@@ -56,7 +56,43 @@ function getFeed() {
 
 function likePhoto(photoId) {
   return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
     dispatch(doLikePhoto(photoId));
+    fetch(`/images/${photoId}/likes/`, {
+      method: "post",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (!response.ok) {
+        dispatch(doUnlikePhoto(photoId));
+      }
+    });
+  };
+}
+
+function unlikePhoto(photoId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    dispatch(doUnlikePhoto(photoId));
+    fetch(`/images/${photoId}/unlikes/`, {
+      method: "delete",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (!response.ok) {
+        dispatch(doLikePhoto(photoId));
+      }
+    });
   };
 }
 
@@ -113,7 +149,9 @@ function applyUnlikePhoto(state, action) {
 //export actions
 
 const actionCreators = {
-  getFeed
+  getFeed,
+  unlikePhoto,
+  likePhoto
 };
 
 export { actionCreators };

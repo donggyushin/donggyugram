@@ -6,8 +6,12 @@ import Ionicon from "react-ionicons";
 const PhotoActions = (props, context) => (
   <div className={styles.actions}>
     <div className={styles.icons}>
-      <span className={styles.icon}>
-        <Ionicon icon="ios-heart-outline" fontSize="28px" color="black" />
+      <span className={styles.icon} onClick={props.handleHeartClick}>
+        {props.isLiked ? (
+          <Ionicon icon="ios-heart" fontSize="28px" color="#EB4B59" />
+        ) : (
+          <Ionicon icon="ios-heart-outline" fontSize="28px" color="black" />
+        )}
       </span>
       <span className={styles.icon}>
         <Ionicon icon="ios-text-outline" fontSize="28px" color="black" />
@@ -21,7 +25,10 @@ const PhotoActions = (props, context) => (
 );
 
 PhotoActions.propTypes = {
-  number: PropTypes.number.isRequired
+  number: PropTypes.number.isRequired,
+  handleHeartClick: PropTypes.func.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  photoId: PropTypes.number.isRequired
 };
 
 PhotoActions.contextTypes = {
