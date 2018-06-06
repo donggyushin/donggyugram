@@ -33,6 +33,9 @@ class Container extends Component {
       console.log(event.key);
       event.preventDefault();
       submitComment(comment);
+      this.setState({
+        comment: ""
+      });
     }
   };
 }
