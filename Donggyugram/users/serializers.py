@@ -8,6 +8,8 @@ from Donggyugram.images import serializers as image_serializers
 
 class ListUserSerializer(serializers.ModelSerializer):
 
+    following = serializers.SerializerMethodField()
+
     class Meta:
 
         model = models.User
@@ -16,7 +18,16 @@ class ListUserSerializer(serializers.ModelSerializer):
             'name',
             'username',
             'profile_image',
+            'following'
         )
+
+    def get_following(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            if obj in request.user.following.all():
+                return True
+
+        return False
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
