@@ -16,7 +16,9 @@ const UserRow = (props, context) => (
       </div>
     </div>
     <span className={styles.column}>
-      <button className={styles.button}>{context.t("Follow")}</button>
+      <button className={styles.button} onClick={props.handleClick}>
+        {props.user.following ? context.t("Unfollow") : context.t("Follow")}
+      </button>
     </span>
   </div>
 );
@@ -34,7 +36,8 @@ UserRow.propTypes = {
     following: PropTypes.bool
   }).isRequired,
   big: PropTypes.bool,
-  horizontal: PropTypes.bool.isRequired
+  horizontal: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 UserRow.defaultProps = {
