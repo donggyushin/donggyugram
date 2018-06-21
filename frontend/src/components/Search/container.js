@@ -18,6 +18,13 @@ class Container extends React.Component {
     searchByTerm();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { searchByTerm } = this.props;
+    if (prevProps.match.params !== this.props.match.params) {
+      searchByTerm();
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.userList && nextProps.imageList) {
       this.setState({

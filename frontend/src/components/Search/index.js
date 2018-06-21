@@ -4,11 +4,13 @@ import { actionCreators as userActions } from "redux/moduels/user";
 
 const mapStateToProps = state => {
   const {
-    user: { imageList, userList }
+    user: { imageList, userList },
+    routing: { location }
   } = state;
   return {
     imageList,
-    userList
+    userList,
+    location
   };
 };
 

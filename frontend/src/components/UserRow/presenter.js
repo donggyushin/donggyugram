@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const UserRow = (props, context) => (
-  <div className={styles.container}>
+  <div className={props.horizontal ? styles.horizontal : styles.vertical}>
     <div className={styles.column}>
       <img
         src={props.user.profile_image || require("images/noPhoto.jpeg")}
@@ -36,8 +36,9 @@ UserRow.propTypes = {
     following: PropTypes.bool
   }).isRequired,
   big: PropTypes.bool,
-  horizontal: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired
+  horizontal: PropTypes.bool,
+  handleClick: PropTypes.func.isRequired,
+  vertical: PropTypes.bool
 };
 
 UserRow.defaultProps = {
